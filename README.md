@@ -20,10 +20,16 @@ Uma ferramenta leve em React + TypeScript para gerar avatares SVG únicos e dete
 
 > O app tenta oferecer variantes visuais diferentes e guarda o histórico local para reduzir repetições.
 
-## Capturas (substitua pelos seus arquivos de preview)
+## Capturas
 
-- /docs/screenshot-1.png — Tela principal com preview
-- /docs/screenshot-2.png — Exemplo de avatar gerado
+Exemplos gerados automaticamente para o README:
+
+- `docs/screenshot-1.svg` — Tela principal com preview
+- `docs/screenshot-2.svg` — Exemplos de avatares gerados
+
+![](docs/screenshot-1.svg)
+
+![](docs/screenshot-2.svg)
 
 ## Como rodar localmente
 

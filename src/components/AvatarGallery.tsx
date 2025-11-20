@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { generateAvatar, AvatarStyle } from "@/lib/avatarGenerators";
-import { AvatarCard } from "./AvatarCard";
+import { Card } from "@/components/ui/card";
 
 interface AvatarGalleryProps {
   style: AvatarStyle;
@@ -8,22 +8,11 @@ interface AvatarGalleryProps {
 
 export const AvatarGallery = ({ style }: AvatarGalleryProps) => {
   const [avatars, setAvatars] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const generateExamples = async () => {
-      setLoading(true);
       const examples: string[] = [];
-      const identifiers = [
-        'alex@company.com', 
-        'sarah.jones', 
-        'michael.chen', 
-        'emma.wilson',
-        'david.kumar',
-        'lisa.martinez',
-        'john.taylor',
-        'sophia.anderson'
-      ];
+      const identifiers = ['user1', 'user2', 'user3', 'user4', 'demo', 'test', 'avatar', 'random'];
       
       for (const id of identifiers) {
         const svg = await generateAvatar(id, style);
@@ -31,7 +20,6 @@ export const AvatarGallery = ({ style }: AvatarGalleryProps) => {
       }
       
       setAvatars(examples);
-      setLoading(false);
     };
 
     generateExamples();
@@ -39,22 +27,22 @@ export const AvatarGallery = ({ style }: AvatarGalleryProps) => {
 
   return (
     <div className="w-full">
-      <h3 className="text-lg font-semibold text-foreground mb-6 text-center">
-        Professional Avatar Examples
+      <h3 className="text-lg font-semibold text-foreground mb-4 text-center">
+        Example Avatars
       </h3>
-      {loading ? (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="aspect-square rounded-lg bg-muted animate-pulse" />
-          ))}
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {avatars.map((svg, index) => (
-            <AvatarCard key={index} svgContent={svg} index={index} />
-          ))}
-        </div>
-      )}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {avatars.map((svg, index) => (
+          <Card 
+            key={index} 
+            className="p-2 shadow-card hover:shadow-glow transition-shadow"
+          >
+            <div 
+              className="w-full aspect-square rounded-lg overflow-hidden"
+              dangerouslySetInnerHTML={{ __html: svg }}
+            />
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };

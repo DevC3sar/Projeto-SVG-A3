@@ -1,51 +1,61 @@
 # Projeto A3 — Gerador de Avatares SVG
 
-Esse projeto cria avatares SVG a partir de um texto (ex: e-mail ou nome). É só um gerador simples que eu montei pra experimentar com formas e cores.
+Uma aplicação simples que gera avatares SVG a partir de qualquer texto (nome, e‑mail, usuário). Foi feita como projeto de estudo e experimentação visual.
 
-![](public/Screenshot 2025-11-20 at 15.46.54.svg)
+## Visão rápida
 
-## O que ele faz (curto)
+- Digite um identificador.
+- Escolha um estilo (geométrico, blob, pixel, rosto, abstrato).
+- Clique em "Gerar novo" para ver outra variação.
 
-- Gera um avatar a partir do identificador que você digitar.
-- Tem vários estilos: geométrico, blob, pixel, rosto e abstrato.
-- Tenta não mostrar o mesmo desenho sempre (guarda o que já apareceu no seu navegador).
+## Imagens (exemplos reais do app)
 
-![](public/Screenshot 2025-11-20 at 15.47.04.svg)
+<p align="center">
+  <img src="public/Screenshot 2025-11-20 at 15.46.54.svg" alt="Tela principal" width="720"/>
+</p>
 
-## Como usar (modo rápido)
+<p align="center">
+  <img src="public/Screenshot 2025-11-20 at 15.47.04.svg" alt="Galeria de exemplos" width="920"/>
+</p>
 
-1. Clone o repositório
-2. Instale dependências
+## Como rodar (rápido, do jeito do estudante)
+
+1. Clone:
+
+```bash
+git clone https://github.com/DevC3sar/Projeto-SVG-A3.git
+cd Projeto-SVG-A3
+```
+
+2. Instale dependências:
 
 ```bash
 npm install
 ```
 
-3. Rode em desenvolvimento
+3. Rode em dev:
 
 ```bash
 npm run dev
 ```
 
-Abra o navegador no endereço que o Vite mostrar (normalmente algo como http://localhost:5173).
+Abra o endereço mostrado pelo Vite no terminal.
 
-Se quiser gerar a versão pra publicar:
+Se quiser gerar build:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Onde olhar no código
+## Onde olhar no código (pontos importantes)
 
-- `src/lib/avatarGenerators.ts` — o gerador de SVG (a parte mais legal)
-- `src/lib/avatarFingerprint.ts` — como a página lembra o que já foi mostrado
-- `src/pages/Index.tsx` — a página principal
+- `src/lib/avatarGenerators.ts` — o coração do gerador, onde as formas e cores são escolhidas.
+- `src/lib/avatarFingerprint.ts` — lógica simples que evita repetir visuais no mesmo navegador.
+- `src/pages/Index.tsx` — a interface: campo, seletor de estilo e preview.
 
 ## Créditos
 
 - Trabalho feito apenas por Guilherme Brito
 
----
-
-Se quiser que eu deixe o README ainda mais simples ou acrescente um GIF curto mostrando o fluxo, eu faço isso.
+Se quiser que eu deixe o README mais curto, mais longo, ou com um GIF mostrando o fluxo (ou badges), eu posso fazer — diga como prefere.

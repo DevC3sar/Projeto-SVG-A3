@@ -66,6 +66,6 @@ npm run preview
 
 ## Créditos
 
-- Trabalho feito apenas por Guilherme Brito
+- feito por: Guilherme Cesar de Brito
 
 Se quiser que eu deixe o README mais curto, mais longo, ou com um GIF mostrando o fluxo (ou badges), eu posso fazer — diga como prefere.

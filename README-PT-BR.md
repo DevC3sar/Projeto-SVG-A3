@@ -54,5 +54,37 @@ localStorage.removeItem('avatar-seen-v1')
 CREDITOS:
 * feito por: Guilherme Cesar de Brito 
 
+## Demo
+
+Veja abaixo uma prévia animada do gerador. O SVG animado está em `public/demo.svg` e deve ser exibido diretamente no GitHub (se suportado pelo navegador).
+
+Preview (SVG animado):
+
+<p align="center">
+	<img src="/public/demo.svg" alt="Demo animado do gerador"/>
+</p>
+
+Se você preferir um GIF (mais compatível com visualização em alguns lugares), gere localmente usando o script incluído:
+
+```bash
+chmod +x scripts/make-gif.sh
+./scripts/make-gif.sh
+# isso criará public/demo.gif a partir dos frames em public/demo-frames/
+```
+
+Depois de gerar o GIF localmente, adicione-o ao repositório e faça commit:
+
+```bash
+git add public/demo.gif
+git commit -m "Adiciona demo.gif gerado localmente"
+git push origin main
+```
+
+Exemplo (placeholder) — caso o GIF esteja presente, o README exibirá algo como:
+
+<p align="center">
+	<img src="/public/demo.gif" alt="Demo GIF do gerador"/>
+</p>
+
 
 

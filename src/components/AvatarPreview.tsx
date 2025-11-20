@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, Copy, Code2 } from "lucide-react";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 interface AvatarPreviewProps {
   svgContent: string;
@@ -34,44 +35,64 @@ export const AvatarPreview = ({ svgContent, identifier }: AvatarPreviewProps) =>
   };
 
   return (
-    <Card className="p-8 shadow-card">
-      <div className="flex flex-col items-center gap-6">
-        <div 
-          className="w-64 h-64 rounded-2xl overflow-hidden shadow-glow border-2 border-border"
-          dangerouslySetInnerHTML={{ __html: svgContent }}
-        />
-        
-        <div className="flex gap-3">
-          <Button 
-            onClick={handleDownload}
-            size="sm"
-            className="gap-2"
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+    >
+      <Card className="p-8 shadow-card bg-gradient-subtle border-2 border-border/50">
+        <div className="flex flex-col items-center gap-6">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, type: "spring" }}
+            whileHover={{ scale: 1.05 }}
+            className="relative"
           >
-            <Download className="w-4 h-4" />
-            Download
-          </Button>
+            <div 
+              className="w-72 h-72 rounded-3xl overflow-hidden shadow-glow border-4 border-primary/20 bg-card"
+              dangerouslySetInnerHTML={{ __html: svgContent }}
+            />
+            <div className="absolute inset-0 rounded-3xl bg-gradient-primary opacity-0 hover:opacity-10 transition-opacity pointer-events-none" />
+          </motion.div>
           
-          <Button 
-            onClick={handleCopyCode}
-            variant="secondary"
-            size="sm"
-            className="gap-2"
+          <motion.div 
+            className="flex flex-wrap justify-center gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
           >
-            <Code2 className="w-4 h-4" />
-            Copy SVG
-          </Button>
-          
-          <Button 
-            onClick={handleCopyDataURL}
-            variant="outline"
-            size="sm"
-            className="gap-2"
-          >
-            <Copy className="w-4 h-4" />
-            Copy URL
-          </Button>
+            <Button 
+              onClick={handleDownload}
+              size="lg"
+              className="gap-2 shadow-card hover:shadow-glow transition-all"
+            >
+              <Download className="w-4 h-4" />
+              Download SVG
+            </Button>
+            
+            <Button 
+              onClick={handleCopyCode}
+              variant="secondary"
+              size="lg"
+              className="gap-2 shadow-card hover:shadow-glow transition-all"
+            >
+              <Code2 className="w-4 h-4" />
+              Copy Code
+            </Button>
+            
+            <Button 
+              onClick={handleCopyDataURL}
+              variant="outline"
+              size="lg"
+              className="gap-2 shadow-card hover:shadow-glow transition-all"
+            >
+              <Copy className="w-4 h-4" />
+              Copy Data URL
+            </Button>
+          </motion.div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </motion.div>
   );
 };

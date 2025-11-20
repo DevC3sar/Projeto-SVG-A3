@@ -1,3 +1,6 @@
+## Creditos
+Feito por: Guilherme Cesar de Brito 
+
 # Projeto A3 — Gerador de Avatares SVG (Português BR)
 
 Este projeto gera avatares SVG únicos e determinísticos a partir de qualquer identificador (ex.: emaail, username ou texto).
@@ -51,8 +54,6 @@ localStorage.removeItem('avatar-seen-v1')
 - A técnica usa um hash determinístico (SHA-256) do identificador + variante para gerar números pseudo-aleatórios reproduzíveis.
 - O sistema de fingerprint tenta evitar repetições visuais usando uma assinatura simples do SVG (cores + contagem de elementos) e persistência no `localStorage`.
 
-CREDITOS:
-* feito por: Guilherme Cesar de Brito 
 
 ## Demo
 

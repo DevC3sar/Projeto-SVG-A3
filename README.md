@@ -1,5 +1,9 @@
 # Projeto A3 — Gerador de Avatares SVG
 
+<!-- Badges -->
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://github.com/DevC3sar/Projeto-SVG-A3)
+
 Uma aplicação simples que gera avatares SVG a partir de qualquer texto (nome, e‑mail, usuário). Foi feita como projeto de estudo e experimentação visual.
 
 ## Visão rápida
@@ -7,6 +11,12 @@ Uma aplicação simples que gera avatares SVG a partir de qualquer texto (nome, 
 - Digite um identificador.
 - Escolha um estilo (geométrico, blob, pixel, rosto, abstrato).
 - Clique em "Gerar novo" para ver outra variação.
+
+## Demo rápido (animação)
+
+<p align="center">
+  <img src="public/demo.svg" alt="Demo animated" width="480"/>
+</p>
 
 ## Imagens (exemplos reais do app)
 

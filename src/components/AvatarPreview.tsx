@@ -19,18 +19,18 @@ export const AvatarPreview = ({ svgContent, identifier }: AvatarPreviewProps) =>
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    toast.success('Avatar downloaded!');
+  toast.success('Avatar baixado!');
   };
 
   const handleCopyCode = () => {
-    navigator.clipboard.writeText(svgContent);
-    toast.success('SVG code copied to clipboard!');
+  navigator.clipboard.writeText(svgContent);
+  toast.success('Código SVG copiado para a área de transferência!');
   };
 
   const handleCopyDataURL = () => {
     const dataUrl = `data:image/svg+xml,${encodeURIComponent(svgContent)}`;
-    navigator.clipboard.writeText(dataUrl);
-    toast.success('Data URL copied to clipboard!');
+  navigator.clipboard.writeText(dataUrl);
+  toast.success('URL de dados copiada para a área de transferência!');
   };
 
   return (
@@ -48,7 +48,7 @@ export const AvatarPreview = ({ svgContent, identifier }: AvatarPreviewProps) =>
             className="gap-2"
           >
             <Download className="w-4 h-4" />
-            Download
+            Baixar
           </Button>
           
           <Button 
@@ -58,7 +58,7 @@ export const AvatarPreview = ({ svgContent, identifier }: AvatarPreviewProps) =>
             className="gap-2"
           >
             <Code2 className="w-4 h-4" />
-            Copy SVG
+            Copiar SVG
           </Button>
           
           <Button 
@@ -68,7 +68,7 @@ export const AvatarPreview = ({ svgContent, identifier }: AvatarPreviewProps) =>
             className="gap-2"
           >
             <Copy className="w-4 h-4" />
-            Copy URL
+            Copiar URL
           </Button>
         </div>
       </div>

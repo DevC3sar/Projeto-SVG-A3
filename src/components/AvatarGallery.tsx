@@ -28,7 +28,7 @@ export const AvatarGallery = ({ style }: AvatarGalleryProps) => {
   return (
     <div className="w-full">
       <h3 className="text-lg font-semibold text-foreground mb-4 text-center">
-        Example Avatars
+        Avatares de Exemplo
       </h3>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {avatars.map((svg, index) => (

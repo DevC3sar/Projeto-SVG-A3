@@ -39,6 +39,15 @@ export class Key {
     return this.getBytes(1)[0] % 16;
   }
 
+  // return integer in [0, max-1] using multiple bytes for better entropy
+  nextInt(max: number): number {
+    if (max <= 0) return 0;
+    // combine 3 bytes into 24-bit number to get a larger range
+    const bytes = this.getBytes(3);
+    const value = (bytes[0] << 16) | (bytes[1] << 8) | bytes[2];
+    return value % max;
+  }
+
   reset(): void {
     this.index = 0;
   }

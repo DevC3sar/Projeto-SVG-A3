@@ -7,12 +7,12 @@ interface StyleSelectorProps {
   onStyleChange: (style: AvatarStyle) => void;
 }
 
-const styles: { value: AvatarStyle; label: string; icon: any }[] = [
-  { value: 'geometric', label: 'Geometric', icon: Circle },
+const styles: { value: AvatarStyle; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
+  { value: 'geometric', label: 'Geométrico', icon: Circle },
   { value: 'blob', label: 'Blob', icon: Square },
   { value: 'pixel', label: 'Pixel', icon: Grid3x3 },
-  { value: 'face', label: 'Face', icon: Smile },
-  { value: 'abstract', label: 'Abstract', icon: Sparkles },
+  { value: 'face', label: 'Rosto', icon: Smile },
+  { value: 'abstract', label: 'Abstrato', icon: Sparkles },
 ];
 
 export const StyleSelector = ({ currentStyle, onStyleChange }: StyleSelectorProps) => {

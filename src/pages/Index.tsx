@@ -50,17 +50,17 @@ const Index = () => {
 
             <div className="flex items-center gap-3">
               <a
-                href="https://github.com/DevC3sar"
+                href="https://github.com/DevC3sar/Projeto-SVG-A3"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[#0f172a]/70 hover:bg-[#0f172a]/90 text-white px-3 py-2 rounded-md shadow-md"
-                aria-label="GitHub - DevC3sar"
+                aria-label="GitHub - Projeto-SVG-A3"
               >
                 <Github className="w-4 h-4" />
                 <span className="text-sm">Ver no GitHub</span>
               </a>
 
-              <span className="text-xs text-muted-foreground">Feito por Guilherme Cesar</span>
+              <span className="text-xs text-muted-foreground">Feito por Guilherme Brito</span>
             </div>
           </div>
           <p className="text-center text-muted-foreground mt-2">

@@ -2,7 +2,7 @@
 
 Esse projeto cria avatares SVG a partir de um texto (ex: e-mail ou nome). É só um gerador simples que eu montei pra experimentar com formas e cores.
 
-![](docs/screenshot-1.svg)
+![](public/Screenshot 2025-11-20 at 15.46.54.svg)
 
 ## O que ele faz (curto)
 
@@ -10,7 +10,7 @@ Esse projeto cria avatares SVG a partir de um texto (ex: e-mail ou nome). É só
 - Tem vários estilos: geométrico, blob, pixel, rosto e abstrato.
 - Tenta não mostrar o mesmo desenho sempre (guarda o que já apareceu no seu navegador).
 
-![](docs/screenshot-2.svg)
+![](public/Screenshot 2025-11-20 at 15.47.04.svg)
 
 ## Como usar (modo rápido)
 
@@ -44,8 +44,7 @@ npm run preview
 
 ## Créditos
 
-- Inspirado pelo `svguid`: https://github.com/mmamorim/svguid
-- Projeto/ajustes: https://github.com/DevC3sar
+- Trabalho feito apenas por Guilherme Brito
 
 ---
 

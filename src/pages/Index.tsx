@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { AvatarPreview } from "@/components/AvatarPreview";
 import { StyleSelector } from "@/components/StyleSelector";
 import { AvatarGallery } from "@/components/AvatarGallery";
 import { generateAvatar, AvatarStyle } from "@/lib/avatarGenerators";
-import { Sparkles, Github } from "lucide-react";
+import { Sparkles, Github, BookOpen } from "lucide-react";
 import InteractiveBackground from "@/components/InteractiveBackground";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [identifier, setIdentifier] = useState("user@example.com");
   const [style, setStyle] = useState<AvatarStyle>('geometric');
   const [svgContent, setSvgContent] = useState("");
@@ -49,6 +52,16 @@ const Index = () => {
             </div>
 
             <div className="flex items-center gap-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => navigate('/documentation')}
+                className="gap-2"
+              >
+                <BookOpen className="h-4 w-4" />
+                Documentação
+              </Button>
+              
               <a
                 href="https://github.com/DevC3sar/Projeto-SVG-A3"
                 target="_blank"

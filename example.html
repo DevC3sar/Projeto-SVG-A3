@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVGuid - Exemplo Simples</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #667eea;
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      flex: 1;
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .avatar-display {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    #avatar-container {
+      display: inline-block;
+      border: 3px solid #667eea;
+      border-radius: 16px;
+      padding: 20px;
+      background: #f8f9fa;
+      margin-bottom: 20px;
+    }
+
+    #avatar-container img {
+      display: block;
+      width: 300px;
+      height: 300px;
+      border-radius: 8px;
+    }
+
+    .download-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .download-buttons button {
+      flex: 0 1 auto;
+      min-width: 120px;
+    }
+
+    .info {
+      background: #f0f4ff;
+      border-left: 4px solid #667eea;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .loading {
+      text-align: center;
+      color: #667eea;
+      font-weight: 500;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 SVGuid</h1>
+    <p class="subtitle">Gerador de Avatares SVG Determinísticos</p>
+
+    <div class="input-group">
+      <label for="identifier">Identificador (email, username, etc.)</label>
+      <input 
+        type="text" 
+        id="identifier" 
+        placeholder="Digite um identificador..."
+        value="user@example.com"
+      >
+    </div>
+
+    <div class="input-group">
+      <label for="style">Estilo do Avatar</label>
+      <select id="style">
+        <option value="geometric">Geometric (Formas Geométricas)</option>
+        <option value="blob">Blob (Formas Orgânicas)</option>
+        <option value="pixel">Pixel (Arte 8-bit)</option>
+        <option value="face" selected>Face (Rostos Estilizados)</option>
+        <option value="abstract">Abstract (Arte Abstrata)</option>
+      </select>
+    </div>
+
+    <div class="buttons">
+      <button onclick="generateSimple()">Gerar Avatar</button>
+      <button onclick="generateUnique()">Gerar Único</button>
+    </div>
+
+    <div id="loading" class="loading" style="display: none;">
+      Gerando avatar...
+    </div>
+
+    <div class="avatar-display" id="avatar-display" style="display: none;">
+      <div id="avatar-container"></div>
+      
+      <div class="download-buttons">
+        <button onclick="downloadAsSVG()">⬇️ Baixar SVG</button>
+        <button onclick="downloadAsPNG()">⬇️ Baixar PNG</button>
+      </div>
+    </div>
+
+    <div class="info">
+      <strong>💡 Como funciona:</strong><br>
+      Este gerador usa SHA-256 para criar avatares únicos e determinísticos. 
+      O mesmo identificador sempre gera o mesmo avatar!
+    </div>
+  </div>
+
+  <script type="module">
+    // Importar a biblioteca
+    import {
+      generateAvatar,
+      generateUniqueAvatar,
+      svgToPng,
+      downloadSvg,
+      downloadPng,
+    } from './src/lib/index.ts';
+
+    let currentSvg = '';
+    let currentIdentifier = '';
+
+    async function showAvatar(svg) {
+      currentSvg = svg;
+      const container = document.getElementById('avatar-container');
+      const display = document.getElementById('avatar-display');
+      const loading = document.getElementById('loading');
+      
+      loading.style.display = 'none';
+      
+      // Converte para PNG para exibir
+      const pngDataUrl = await svgToPng(svg, 300);
+      
+      container.innerHTML = `<img src="${pngDataUrl}" alt="Avatar">`;
+      display.style.display = 'block';
+    }
+
+    window.generateSimple = async function() {
+      const identifier = document.getElementById('identifier').value.trim();
+      const style = document.getElementById('style').value;
+      
+      if (!identifier) {
+        alert('Por favor, digite um identificador!');
+        return;
+      }
+
+      currentIdentifier = identifier;
+      document.getElementById('loading').style.display = 'block';
+      document.getElementById('avatar-display').style.display = 'none';
+
+      try {
+        const svg = await generateAvatar(identifier, style);
+        await showAvatar(svg);
+      } catch (error) {
+        alert('Erro ao gerar avatar: ' + error.message);
+        document.getElementById('loading').style.display = 'none';
+      }
+    };
+
+    window.generateUnique = async function() {
+      const identifier = document.getElementById('identifier').value.trim();
+      const style = document.getElementById('style').value;
+      
+      if (!identifier) {
+        alert('Por favor, digite um identificador!');
+        return;
+      }
+
+      currentIdentifier = identifier;
+      document.getElementById('loading').style.display = 'block';
+      document.getElementById('avatar-display').style.display = 'none';
+
+      try {
+        const { svg, variant } = await generateUniqueAvatar(identifier, style);
+        await showAvatar(svg);
+        console.log(`Avatar único gerado com variante ${variant}`);
+      } catch (error) {
+        alert('Erro ao gerar avatar: ' + error.message);
+        document.getElementById('loading').style.display = 'none';
+      }
+    };
+
+    window.downloadAsSVG = function() {
+      if (!currentSvg) return;
+      downloadSvg(currentSvg, `avatar-${currentIdentifier}`);
+    };
+
+    window.downloadAsPNG = async function() {
+      if (!currentSvg) return;
+      const pngDataUrl = await svgToPng(currentSvg, 500);
+      downloadPng(pngDataUrl, `avatar-${currentIdentifier}`);
+    };
+
+    // Gera um avatar inicial
+    window.addEventListener('DOMContentLoaded', () => {
+      generateSimple();
+    });
+  </script>
+</body>
+</html>

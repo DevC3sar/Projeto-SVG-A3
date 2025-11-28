@@ -1,23 +1,45 @@
 {
-  "name": "svguid-v1",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@guilherme4774/avatar-widget",
+  "version": "0.4.0",
+  "description": "Biblioteca para gerar avatares SVG determinísticos a partir de uma chave (widget + utilitários)",
   "type": "module",
+  "main": "src/index.js",
+  "files": [
+    "src/",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node src/index.js",
+    "pack:local": "npm pack"
+  },
+  "keywords": [
+    "avatar",
+    "svg",
+    "deterministic",
+    "widget",
+    "avatar-widget"
+  ],
+  "author": "guilherme4774",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
+    "@svgdotjs/svg.js": "^3.2.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
     "@guolao/vue-monaco-editor": "^1.5.1",
     "@iconify/vue": "^4.1.1",
     "@quasar/extras": "^1.16.11",
-    "@svgdotjs/svg.js": "^3.2.0",
     "quasar": "^2.15.4",
     "simple-code-editor": "^2.0.9",
-    "vue": "^3.4.21"
-  },
-  "devDependencies": {
+    "vue": "^3.4.21",
     "@quasar/vite-plugin": "^1.6.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "sass": "^1.76.0",
